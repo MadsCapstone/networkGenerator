@@ -99,7 +99,13 @@ class DBFFileParserException(Exception):
 
 
 class DBFFileParser:
-    def __init__(self, dir=None):
+    """
+    Since we are reading files from a local directory on machine this class
+    will look through the directory and make sure before we can request reading a file through our
+    pipeline that it is infact present but also a dbf which is a requirement for future steps
+    in the pipeline.
+    """
+    def __init__(self, dir):
         self.dir = dir
         self.files_in_dir = self.__get_files_in_dir(self.dir)
         self.dbf_files_in_dir = self.__filter_files_in_dir(self.files_in_dir)
@@ -153,27 +159,30 @@ class DBF2DataFrameException(Exception):
 
 class DBF2DataFrame:
     """
-    Class takes in a directory and initializes DBFFileParser
-    then has methods to...
+    Provide file to read and read em up
     get a single file from the Parser as a DataFrame
     get a multiple files from the Parser as a dictionary of DataFrames
     """
-    def __init__(self, data_dir, read=None):
+    # TODO take in a DBFFileParser in init
+    def __init__(self, dbfp):
         # dbf file object from dbf reader class
-        self.__dbfp = DBFFileParser(data_dir)
-        self.__read = read
+        if dbfp:
+            self.__dbfp = dbfp
+        else:
+            # self.__dbfp = DBFFileParser(data_dir)
+            pass
 
-    def get_df(self):
-        return self.__infer_read_type()
+    def get_df(self, files):
+        return self.__infer_read_type(files)
 
     # TODO make return boolean and handle case abstract to class or method
-    def __infer_read_type(self):
-        if type(self.__read) == str:
-            return self.__get_dataframe_from_file(self.__read)
-        if type(self.__read) == list:
-            return self.__get_dataframes_from_files(self.__read)
+    def __infer_read_type(self, files):
+        if type(files) == str:
+            return self.__get_dataframe_from_file(files)
+        if type(files) == list:
+            return self.__get_dataframes_from_files(files)
         else:
-            raise DBF2DataFrameException(f'Can only handle args of type str or list not {type(self.__read)}')
+            raise DBF2DataFrameException(f'Can only handle args of type str or list not {type(files)}')
 
     def __dbf_to_dataframe(self, fname):
         records = self.__dbfp.get_dbf_file(fname).records
@@ -182,9 +191,9 @@ class DBF2DataFrame:
     def __get_dataframe_from_file(self, fname):
         """
         :param dbf:
-        :return: pandas dataframe object
+        :return: dict with dataframe
         """
-        return self.__dbf_to_dataframe(fname)
+        return {fname: self.__dbf_to_dataframe(fname)}
 
     def __get_dataframes_from_files(self, filenames):
         """
