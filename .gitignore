@@ -1,4 +1,6 @@
-/data
+data/*
+!data/NHDFlowline.dbf
+!data/PlusFlowlineVAA.dbf
 /.DS_Store
 /__pycache__
 .idea/
