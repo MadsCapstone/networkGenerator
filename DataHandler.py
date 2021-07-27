@@ -17,6 +17,7 @@ class WriteData:
 class MigrateToDB:
     pass
 
+
 class ReadFileStore:
     def __init__(self, **kwargs):
         self.__read_files_fname = f'{Config.pickledir}/{Config.read_files}'
@@ -41,8 +42,6 @@ class ReadFileStore:
         self.save()
 
 
-
-
 # TODO add additional methods here in order to not duplicate reads
 class DataHandler:
     """
@@ -60,7 +59,6 @@ class DataHandler:
         self.__dbf2df = DBF2DataFrame(self.__dbfp)
         # self.__pd = PrepareData(self.__dbf2df)
         self.rfs = ReadFileStore()
-
 
     # TODO make this less shit because I slapped this together for testing
     def read_df_from_dbf_file(self, files):
@@ -80,7 +78,8 @@ class DataHandler:
                 else:
                     dfs[file] = d
         return dfs
-    #TODO: Something is wonky with calling this and external references
+
+    # TODO: Something is wonky with calling this and external references
     def prepare(self, data):
         pd = PrepareData(self.__dbf2df)
         return pd.prepare(data)
@@ -90,7 +89,6 @@ class DataHandler:
 
     def clean(self):
         pass
-
 
 
 if __name__ == '__main__':

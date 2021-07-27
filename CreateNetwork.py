@@ -83,8 +83,8 @@ class RiverStemDetails:
         self.mainstem_level = float()
         self.mainstem_pathlength = float()
         self.edges = {
-            'from':[],
-            'to':[],
+            'from': [],
+            'to': [],
         }
         self.__mainstem_attributes()
 
@@ -166,13 +166,13 @@ class EdgeToNode:
             self.nhdfl_df = self.data['NHDFlowline.dbf']
             self.riverbasins = None
             self.all_edges = {
-                'from':[],
-                'to':[]
+                'from': [],
+                'to': []
             }
             self.__build_river_basins_dicts()
             self.__build_edges()
 
-    #TODO: Refactor this garbage for getting stem branches
+    # TODO: Refactor this garbage for getting stem branches
     def __get_river_network_by_mainstem(self, terminal):
         df = self.vaa_df[self.vaa_df['TerminalFl'] == terminal]
         main_river_ids = df[['ComID', 'Hydroseq']].values
@@ -180,7 +180,7 @@ class EdgeToNode:
         for comid, hydroseq in tqdm(main_river_ids):
             mainstem_basin_df = self.vaa_df[self.vaa_df['TerminalPa'] == hydroseq]
             mainstem_row = mainstem_basin_df[mainstem_basin_df.ComID == comid]
-            if len(mainstem_row)>0:
+            if len(mainstem_row) > 0:
                 rsd = RiverStemDetails(comid, mainstem_basin_df, self.preparedData)
                 dict_of_df_river_basins[comid] = rsd
         self.riverbasins = dict_of_df_river_basins
@@ -251,13 +251,13 @@ class Network:
         with open(self.__read_files_fname, 'wb') as f:
             pickle.dump(self.__dict__, f)
 
+
 class NetworkViz:
-    def __init__(self,network, **kwargs):
+    def __init__(self, network, **kwargs):
         self.__file_name = 'pickles/viz.html'
         self.__network = network
         self.G, self.pos = network.get_Graph_and_Layout()
         self.__viz = None
-
 
     def make_Viz(self, **kwargs):
         self.__viz = nxa.draw_networkx(
@@ -277,6 +277,7 @@ class NetworkViz:
 
     def display(self):
         self.__viz.show()
+
 
 if __name__ == '__main__':
     etn = EdgeToNode()
