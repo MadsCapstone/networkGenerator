@@ -1,6 +1,7 @@
 data/*
 !data/NHDFlowline.dbf
 !data/PlusFlowlineVAA.dbf
+!data/PlusFlow.dbf
 /.DS_Store
 /__pycache__
 .idea/
@@ -12,3 +13,5 @@ CreateNetworkFromDF.py
 Pickler.py
 /pickles/ETN
 DataDownloader.py
+CreateNetwork.py
+Network.py

@@ -285,34 +285,3 @@ if __name__ == '__main__':
     edges = etn.get_edges_as_list()
     edges_df = etn.get_edges_as_df()
     edges_df.to_csv('pickles/edges.csv')
-    # network = Network(edges)
-    # # network.init()
-    # # network.save()
-    # viz = NetworkViz(network)
-    # viz.make_Viz()
-    # viz.modify_viz(
-    #     properties={'width':3000,'height': 3000},
-    #     # add more args
-    # )
-    # viz.save_html()
-    # dfnhdfl = etn.data['NHDFlowline.dbf']
-    # vaa = etn.data['PlusFlowlineVAA.dbf']
-    # printt(dfnhdfl[dfnhdfl.COMID==15450474.0])
-    # printt(vaa[vaa.ComID==15450474.0])
-    # print(etn.data['NHDFlowline.dbf'].columns)
-    # print(etn.data['PlusFlowlineVAA.dbf'].columns)
-    # len(etn.data['NHDFlowline.dbf'].GNIS_NAME.unique())
-    #
-    # vaa columns
-    # columns_in_vaa = ['ComID', 'Fdate', 'StreamLeve', 'StreamOrde', 'StreamCalc', 'FromNode',
-    #                   'ToNode', 'Hydroseq', 'LevelPathI', 'Pathlength', 'TerminalPa',
-    #                   'ArbolateSu', 'Divergence', 'StartFlag', 'TerminalFl', 'DnLevel',
-    #                   'ThinnerCod', 'UpLevelPat', 'UpHydroseq', 'DnLevelPat', 'DnMinorHyd',
-    #                   'DnDrainCou', 'DnHydroseq', 'FromMeas', 'ToMeas', 'ReachCode',
-    #                   'LengthKM', 'Fcode', 'RtnDiv', 'OutDiv', 'DivEffect', 'VPUIn', 'VPUOut',
-    #                   'AreaSqKM', 'TotDASqKM', 'DivDASqKM', 'Tidal', 'TOTMA', 'WBAreaType',
-    #                   'PathTimeMA']
-    #
-    # columns_in_nhdfl = ['COMID', 'FDATE', 'RESOLUTION', 'GNIS_ID', 'GNIS_NAME', 'LENGTHKM',
-    #                     'REACHCODE', 'FLOWDIR', 'WBAREACOMI', 'FTYPE', 'FCODE', 'SHAPE_LENG',
-    #                     'ENABLED', 'GNIS_NBR']

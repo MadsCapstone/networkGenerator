@@ -4,14 +4,21 @@ The main purpose of this repository is to read files from source data and create
 
 ## How to use this repository?
 1. First clone the repository.
-2. Create virtual environment to use or use an existing one
+2. Create virtual environment to use or use an existing one (use google)
+```shell
+python3 -m venv [name of venv]
+```
 3. install requirements.txt
 ```shell
 pip install -r requirements.txt
 ```
 4. Run shell command
 ```shell
-python networkGenerator --make-edges 
+python networkGenerator.py --make_edges --output myoutput --type named
+```
+5. For more information on args run command
+```shell
+python networkGenerator.py --help
 ```
 
 ## Future of this repository
